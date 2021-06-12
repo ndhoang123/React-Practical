@@ -1,0 +1,16 @@
+Props:
+- Không thay đổi được
+- Được truyền từ thằng cha xuống.
+
+State:
+- Thay đổi được.
+- Dùng cho một component hiện tại.
+- Ví dụ: 
+ - Dữ liệu trong API,...
+
+Global State:
+- Thay đổi được.
+- Dùng cho nhiều component.
+- Ví dụ:
+ - Thông tin logged in user
+ - Thông tin của giỏ hàng

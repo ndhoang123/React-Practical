@@ -1,0 +1,9 @@
+React life cycle:
+- Mounting (khởi tạo)
+- Update (cập nhật)
+- Unmounting (xoá khỏi DOM)
+
+Frequently?
+- Mounting, unmounting chỉ thực hiện 1 lần.
+- Update nhiều lần, khi props thay đổi, state thay đổi, hoặc khi sử dụng hàm ForceUpdate. 
+Sau khi thực hiện xong thì nó sẽ render lại, rồi componentDidUpdate.
