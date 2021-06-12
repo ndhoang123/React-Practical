@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import ColorBox from "./components/ColorBox";
 import Todolist from "./components/Todolist";
+import TodoForm from "./components/TodoForm";
 import React, { useState } from 'react';
 
 function App() {
@@ -16,11 +17,23 @@ function App() {
     setTodoList(newArray.filter(item => item.id !== todo.id))
   }
 
+  function handleAddNewItem(todo){
+    const newTodo = {
+      id: Todolist.length + 1,
+      ...todo
+    };
+
+    const newArrayTodo = [...todoList];
+    newArrayTodo.push(newTodo);
+    setTodoList(newArrayTodo);
+  }
+
   return (
     <div className="App">
       <h1>React hooks - TodoList!</h1>
 
       <Todolist todos={todoList} onTodoClick={handleTodolist}/>
+      <TodoForm submit={handleAddNewItem}/>
     </div>
   );
 }
