@@ -4,23 +4,24 @@ import Button from "../Button";
 
 Header.propTypes = {
     title: PropTypes.string.isRequired,
+    onShowTaskClick: PropTypes.func,
 };
 
 Header.defaultProps ={
-    title: 'Task Tracker'
-}
+    title: 'Task Tracker',
+    onShowTaskClick: null
+};
 
 function Header(props) {
-    const {title} = props;
-
-    const handleOnClick = () => {
-        console.log("Click");
-    }
+    const {title, onShowTaskClick, AddTask} = props;
 
     return (
         <div className='header'>
             <h1>Hello {title}</h1>
-            <Button color="green" text="Add" onClick={handleOnClick}/>
+            <Button 
+            color={AddTask ? "red" : "green"} 
+            text={AddTask ? "Close" : "Add"} 
+            onClick={onShowTaskClick}/>
         </div>
     );
 }
