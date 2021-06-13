@@ -32,12 +32,12 @@ function TodoForm(props) {
     }
 
     return (
-        <form onSubmit={handleReloadSubmit}>
-            <label>
-                New item:
-                <textarea value={value} onChange={handleChangeValue}/>
-            </label>
-            <input type="submit" value="Submit"/>
+        <form className='add-form' onSubmit={handleReloadSubmit}>
+            <div className='form-control'>
+                <label>New Task:</label>
+                <input type='text' placeholder='Add Task'/>
+            </div>
+            <input type="submit" value='Save Task' className="btn btn-button"/>
         </form>
     );
 }

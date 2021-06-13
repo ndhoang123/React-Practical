@@ -4,14 +4,15 @@ import Task from "../Task";
 
 Tasks.propTypes = {
     task: PropTypes.string,
+    handleDelete: PropTypes.func,
 };
 
 function Tasks(props) {
-    const {tasks} = props;
+    const {tasks, handleDelete} = props;
     return (
         <div>
             {tasks.map((task) => (
-                <Task key={task.id} task={task}/>
+                <Task key={task.id} task={task} onDelete={handleDelete}/>
             ))}
         </div>
     );
