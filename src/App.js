@@ -5,6 +5,7 @@ import Todolist from "./components/Todolist";
 import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
 import Header from "./components/Header";
+import Tasks from "./components/Tasks";
 
 function App() {
   const [todoList, setTodoList] = useState(
@@ -51,9 +52,7 @@ function App() {
   return (
     <div className="container">
       <Header/>
-      <h1>React hooks - TodoList!</h1>
-
-      <PostList posts={postList}/>
+      <Tasks tasks={todoList}/>
     </div>
   );
 }
