@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './App.css';
 import ColorBox from "./components/ColorBox";
 import Todolist from "./components/Todolist";
 import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
+import Header from "./components/Header";
 
 function App() {
   const [todoList, setTodoList] = useState(
@@ -49,11 +49,10 @@ function App() {
   }, []) 
 
   return (
-    <div className="App">
+    <div className="container">
+      <Header/>
       <h1>React hooks - TodoList!</h1>
 
-      {/* <Todolist todos={todoList} onTodoClick={handleTodolist}/>
-      <TodoForm submit={handleAddNewItem}/> */}
       <PostList posts={postList}/>
     </div>
   );
