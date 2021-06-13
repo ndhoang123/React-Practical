@@ -9,9 +9,11 @@ Tasks.propTypes = {
 
 function Tasks(props) {
     const {tasks, handleDelete} = props;
+
+    console.log(tasks);
     return (
         <div>
-            {tasks.map((task) => (
+            {tasks.map((task, index) => (
                 <Task key={task.id} task={task} onDelete={handleDelete}/>
             ))}
         </div>

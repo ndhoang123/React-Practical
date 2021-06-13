@@ -8,10 +8,11 @@ Task.propTypes = {
 };
 
 function Task({task, onDelete}) {
+    console.log(task);
     return (
         <div className='task'>
             <h3>
-                {task.title}{' '}
+                {task.text}{' '}
                 <BsDashCircleFill 
                     style={{color: 'red', cursor: 'pointer'}}
                     onClick={() => onDelete(task.id)}

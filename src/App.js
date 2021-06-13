@@ -8,17 +8,19 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 
 function App() {
-  const [todoList, setTodoList] = useState(
-    [{ id: 1, title: 'I love Easy Frontend! ' },
-    { id: 2, title: 'We love Easy Frontend! ' },
-    { id: 3, title: 'They love Easy Frontend! ' }]
-  )
+  const [todoList, setTodoList] = useState([]);
 
   const [postList, setPostList] = useState([]);
+
+  const [showAddTask, setShowAddtask] = useState(false);
   
   function handleTodolist(todo){
-    const newArray = [...todoList];
-    setTodoList(newArray.filter(item => item.id !== todo.id))
+    setTodoList(todoList.filter(item => item.id !== todo))
+  }
+
+  function handleShowTask(){
+    console.log("Show button");
+    setShowAddtask(!showAddTask);
   }
 
   function handleAddNewItem(todo){
@@ -33,26 +35,26 @@ function App() {
   }
 
   useEffect(() => {
-    async function FetchPostList(){
-      const requestUrl = 'http://js-post-api.herokuapp.com/api/posts?_limit=1&_page=1';
-      try{
-        await axios.get(requestUrl)
-        .then(res => {
-          setPostList({data: res.data})
-        });
-      }
-      catch(error){
-        console.log('Error when fetching API data:', error.message);
-      }
+    const getData = async () => {
+      const newData = await fetchTaskList();
+      setTodoList(newData);
     }
 
-    FetchPostList();
+    getData();
   }, []) 
+
+  // Fetch data
+  const fetchTaskList = async () =>{
+    const res = await axios.get("http://localhost:5000/tasks");
+    return res.data;
+  }
 
   return (
     <div className="container">
-      <Header/>
-      <Tasks tasks={todoList}/>
+      <Header onShowTaskClick={handleShowTask} AddTask={showAddTask}/>
+      {showAddTask && <TodoForm/>}
+      {todoList.length > 0 ? 
+      <Tasks tasks={todoList} handleDelete={handleTodolist}/> : 'No tasks to show'}
     </div>
   );
 }
