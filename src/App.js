@@ -6,6 +6,9 @@ import TodoForm from "./components/TodoForm";
 import PostList from "./components/PostList";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import Footer from "./components/Footer";
+import About from "./components/About";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -50,12 +53,20 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Header onShowTaskClick={handleShowTask} AddTask={showAddTask}/>
-      {showAddTask && <TodoForm/>}
-      {todoList.length > 0 ? 
-      <Tasks tasks={todoList} handleDelete={handleTodolist}/> : 'No tasks to show'}
-    </div>
+    <Router>
+      <div className="container">
+        <Header onShowTaskClick={handleShowTask} AddTask={showAddTask}/>
+        {showAddTask && <TodoForm/>}
+        <Route path="/" exact render = {(props) =>(
+          <>
+          {todoList.length > 0 ? 
+            <Tasks tasks={todoList} handleDelete={handleTodolist}/> : 'No tasks to show'}
+          </>
+         )}/>
+        <Route path="/about" component={About}/>
+        <Footer/>
+      </div>
+    </Router>
   );
 }
 
